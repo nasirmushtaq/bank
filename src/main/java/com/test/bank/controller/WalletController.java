@@ -22,7 +22,7 @@ public class WalletController {
         try {
             return ResponseEntity.ok(walletService.depositToWallet(walletDto.getUserId(), walletDto.getAmount(), walletDto.getCurrency()));
         } catch (CommonException e) {
-            return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
+            return ResponseEntity.badRequest().body(e.convertToMap());
         }
     }
 
@@ -31,7 +31,7 @@ public class WalletController {
         try {
             return ResponseEntity.ok(walletService.withdrawFromWallet(walletDto.getUserId(), walletDto.getAmount(), walletDto.getCurrency()));
         } catch (CommonException e) {
-            return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
+            return ResponseEntity.badRequest().body(e.convertToMap());
         }
     }
 
@@ -40,7 +40,7 @@ public class WalletController {
         try {
             return ResponseEntity.ok(walletService.getBalance(walletDto.getUserId(), walletDto.getCurrency()));
         } catch (CommonException e) {
-            return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
+            return ResponseEntity.badRequest().body(e.convertToMap());
         }
     }
 }

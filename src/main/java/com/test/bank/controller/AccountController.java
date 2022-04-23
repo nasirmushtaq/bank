@@ -25,7 +25,7 @@ public class AccountController {
         try {
             return ResponseEntity.ok(accountService.saveAccount(accountDto));
         } catch (CommonException e) {
-            throw e;
+            return ResponseEntity.badRequest().body(e.convertToMap());
         }
     }
 
@@ -35,7 +35,7 @@ public class AccountController {
             accountService.deleteAccount(userId);
             return ResponseEntity.ok("success");
         } catch (CommonException e) {
-            throw e;
+            return ResponseEntity.badRequest().body(e.convertToMap());
         }
     }
 
@@ -44,7 +44,7 @@ public class AccountController {
         try {
             return ResponseEntity.ok(accountService.getAccountsByPage(pageNo));
         } catch (CommonException e) {
-            throw e;
+            return ResponseEntity.badRequest().body(e.convertToMap());
         }
     }
 }

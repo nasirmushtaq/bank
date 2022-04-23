@@ -25,7 +25,7 @@ public class TransactionController {
             transactionService.domesticTransfer(domesticTransferDto);
             return ResponseEntity.ok("success");
         } catch (CommonException e) {
-            return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
+            return ResponseEntity.badRequest().body(e.convertToMap());
         }
     }
 
@@ -35,7 +35,7 @@ public class TransactionController {
             transactionService.internationalTransfer(internationTransferDto);
             return ResponseEntity.ok("success");
         } catch (CommonException e) {
-            return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
+            return ResponseEntity.badRequest().body(e.convertToMap());
         }
     }
 }
